@@ -1,0 +1,75 @@
+    {% load static %}
+    <div class="container-fluid footer bg-blue">
+      <div class="row">
+        <div class="col-md-7 mx-auto">
+          <main class="py-3 text-white">
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <div class="mb-3">
+						<img src="{% static 'images/logo.png' %}">
+                </div>
+                <p>Skolaku adalah platform satu pintu untuk meningkatkan skill yang terdiri dari program akademi dan sertifikasi, magang untuk tujuan akademis (PKL, Internship, Prakerin), pelatihan online dan job portal.</p>
+              </div><!-- col-md-6 -->
+              <div class="col-md-2 col-6 mb-4">
+                <div class="mb-2">PERUSAHAAN</div>
+                <div><a href="#">Tentang Kami</a></div>
+                <div><a href="#">Berita Terbaru</a></div>
+                <div><a href="#">Metode Belajar</a></div>
+              </div><!-- col-md-2 -->
+              <div class="col-md-2 col-6 mb-4">
+                <div class="mb-2">PROGRAM</div>
+                <div><a href="#">Magang</a></div>
+                <div><a href="#">Akademi</a></div>
+                <div><a href="#">Pelatihan</a></div>
+                <div><a href="#">Gamifikasi</a></div>
+              </div><!-- col-md-2 -->
+              <div class="col-md-2 col-6 mb-4">
+                <div class="mb-2">SUPPORT</div>
+                <div><a href="#">FAQ</a></div>
+                <div><a href="#">Hubungi Kami</a></div>
+              </div><!-- col-md-2 -->
+            </div><!-- row -->
+          </main>
+        </div><!-- col-md-7 -->
+      </div><!-- row -->
+    </div><!-- container-fluid -->
+
+    <div class="container-fluid copyright mb-0">
+      <div class="row">
+          <div class="col-md-7 mx-auto">
+            <main class="py-1 text-center text-white">
+              <div class="small">&copy; 2022 Skolaku. All rights reserved. Term and Condition / Privacy Policy</div>
+            </main>
+          </div><!-- col-md-7 -->
+      </div><!-- row -->
+    </div><!-- container-fluid -->
+	
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $(".owl-carousel-testimonial").owlCarousel({
+          margin:25,
+          dots:true,
+          loop:true,
+          autoplay:true,
+          animateOut: 'animate__fadeOut',
+          animateIn: 'animate__fadeIn',
+          responsiveClass:true,
+          responsive:{
+            0:{
+                items:1
+            },
+            600:{
+                items:3
+            },
+            1000:{
+                items:3
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

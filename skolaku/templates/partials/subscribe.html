@@ -1,0 +1,31 @@
+{% load static %}
+<div class="container-fluid subscribe bg-info">
+	<div class="row">
+		<div class="col-md-7 mx-auto">
+			<main class="py-3 pb-md-0 text-white text-center">
+				<div class="d-flex align-items-center flex-column flex-md-row">
+					<div class="mb-4 mb-md-0">
+						<img src="{% static 'images/brosur.png' %}">
+					</div>
+					<div class="text-center p-md-5">
+						<h2 class="mb-2">Download Brosur</h2>
+						<p class="mb-4">Daftar harga kursus dan silabus bisa anda lihat di dalam brosur ini</p>
+						<form class="row g-1">
+							<div class="col">
+								<label for="name" class="visually-hidden">Nama</label>
+								<input type="text" class="form-control" id="name" placeholder="Nama" required>
+							</div>
+							<div class="col">
+								<label for="email" class="visually-hidden">Email</label>
+								<input type="email" class="form-control" id="email" placeholder="Email" required>
+							</div>
+							<div class="col">
+								<button type="submit" class="btn bg-pink text-white w-100">Download</button>
+							</div>
+						</form>
+					</div>
+				</div><!-- d-flex -->
+			</main>
+		</div>
+	</div><!-- row -->
+</div><!-- subscribe -->
