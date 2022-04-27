@@ -9,3 +9,4 @@ def blog_detail(request, blog_id):
 
 def page_course(request):
     return render(request, 'blog/page-course.html')
+
