@@ -35,7 +35,7 @@ class post(models.Model):
     excerpt = models.TextField(max_length=400, blank=True)
     embed=models.CharField(max_length=800, blank=True)
     image=models.ImageField(upload_to='blog/images', blank=True)
-    video = EmbedVideoField(max_length=140, default="paste your embeded code here")
+    video = EmbedVideoField(max_length=140, default="", blank=True)
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
