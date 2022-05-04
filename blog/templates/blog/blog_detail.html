@@ -1,71 +1,56 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
 
+{% extends "base.html" %}
+{% load embed_video_tags %}
+{% load static %}
+
+{% block title %}
+| {{post.title}}
+{% endblock%}
+{% block content %}
 <div class="container-fluid blog-detail">
 	<div class="row">
 		<div class="col-md-7 mx-auto">
 			<main class="py-3">
 
 				<div class="text-center text-md-start">
-					<h2>10 Call to Action Best Practices to Get More Email Subscribers</h2>
-					<p class="lead">Get more subscribers the easy way by tweaking just a few words in your call to action buttons.</p>
-					<p><span class="author">Admin</span> / <span class="date-post">1 day ago</span> / <a href="index.php?blog-category" class="category text-decoration-none">Google Ads</a></p>
+					<h2>{{blog.title}}</h2>
+					<p class="lead">{{blog.excerpt}}</p>
+					<p><span class="author">Admin</span> / <span class="date-post">{{blog.date_posted |date:"d M Y"}}</span> / <a href="index.php?blog-category" class="category text-decoration-none">{{blog.category.parent_category}}</a></p>
 				</div>
 
 				<div class="ratio ratio-16x9 mb-3">
-				  <iframe src="https://www.youtube.com/embed/OXJquAWemiQ?rel=0" title="YouTube video" allowfullscreen class="rounded border"></iframe>
-				</div><!-- video youtube -->
+           			{% video blog.video as my %}
+                    <iframe class="embed-responsive-item mb-2 mr-2  mt-2" src="{{ my.url }}"></iframe>
+                    {% endvideo %}			
+					</div><!-- video youtube -->
 
 				<div class="mb-3">
-					<iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/1ROzkPrMA5uN2RvPVvwjnN?utm_source=generator" width="100%" height="232" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-				</div><!-- embed podcast -->
-
-				<article>
-					<div class="entry-content mb-3">
-						<p>Google has begun the rollout of the third version of the products reviews update, a search ranking algorithm update targeted at ranking product review related content on the web that is most helpful and useful to searchers. The first product reviews update was launched on April 8, 2021, the second was launched on December 1, 2021 and now the third has been released on March 23, 2022. The new is named the March 2022 product reviews update.</p>
-						<h2>Headline 2</h2>
-						<p>Google product reviews update. The Google product reviews update aims to promote review content that is above and beyond much of the templated information you see on the web. Google said it will promote these types of product reviews in its search results rankings.</p>
-						<p>Google is not directly punishing lower quality product reviews that have “thin content that simply summarizes a bunch of products.” However, if you provide such content and find your rankings demoted because other content is promoted above yours, it will definitely feel like a penalty. Technically, according to Google, this is not a penalty against your content, Google is just rewarding sites with more insightful review content with rankings above yours.</p>
+					<div class="entry-content mb-3"><iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/47AcSD50nYxgg99swhR8uK?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+						{{blog.content | safe}}
 					</div>
-
+					<article>
 					<div class="related-post">
 						<h2 class="mb-3">Artikel Lainnya</h2>
-						<div class="row"> 
-							<div class="col-md-4">
-								<div class="card border-0 bg-transparent">
-									<a href="index.php?blog-detail">
-										<img src="https://img-c.udemycdn.com/course/240x135/4464880_b9e3_3.jpg" class="card-img-top">
-									</a>
-									<div class="card-body px-0">
-										<h5 class="card-title"><a href="index.php?blog-detail" class="text-dark text-decoration-none">10 Call to Action Best Practices to Get More Email Subscribers</a></h5>
-										<p>Get more subscribers the easy way by tweaking just a few words in your call to action buttons.</p>
-									</div>
-								</div>
-							</div><!-- col-md-4 -->
-							<div class="col-md-4">
-								<div class="card border-0 bg-transparent">
-									<a href="index.php?blog-detail">
-										<img src="https://img-c.udemycdn.com/course/240x135/354176_fe73_5.jpg" class="card-img-top">
-									</a>
-									<div class="card-body px-0">
-										<h5 class="card-title"><a href="index.php?blog-detail" class="text-dark text-decoration-none">Enterprise SEO: Lessons from 20 years in the trenches</a></h5>
-										<p>Want to gain market share rapidly and boost profits? Learn the key elements of a winning SEO ..</p>
-									</div>
-								</div>
-							</div><!-- col-md-4 --> 
-							<div class="col-md-4">
-								<div class="card border-0 bg-transparent">
-									<a href="index.php?blog-detail">
-										<img src="https://img-c.udemycdn.com/course/240x135/519554_da68_6.jpg" class="card-img-top">
-									</a>
-									<div class="card-body px-0">
-										<h5 class="card-title"><a href="index.php?blog-detail" class="text-dark text-decoration-none">Measurement in a cookieless world: Are you ready for what’s next?</a></h5>
-										<p>In this webinar, learn about the challenges and solutions to help you..</p>
-									</div>
-								</div>
-							</div><!-- col-md-4 -->
-						</div><!-- row -->
+									
+	  				
+	  			<div class="row"> 
+				
+					{% for form in forms %}	
+					<div class="col-md-4">
+			
+						<div class="card border-0 bg-transparent">
+							<a href="{%url 'post-detail' form.id %}">
+								<img src="{{form.image.url}}" class="card-img-top">
+							</a>
+							<div class="card-body px-0">
+								<h5 class="card-title"><a href="{%url 'post-detail' form.id %}" class="text-dark text-decoration-none">{{form.title}}</a></h5>
+								<p>{{form.excerpt}}</p>
+							</div>
+						</div>
+				
+					</div><!-- col-md-4 -->
+					{% endfor %}
+
 					</div><!-- related-post -->
 
 				</article>
@@ -73,4 +58,4 @@
 		</div>
 	</div>
 </div><!-- blog-detail -->
-{% endblock %}
+{% endblock content %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% for content in about %}
+<div class="container-fluid page-course-hero bg-white">
+			<div class="col-md-7 mx-auto">
+				<h1>{{content.title}}</h1>
+				<p>{{content.description |safe}}</p>
+</div>
+
+</div><!-- page-course-hero -->
+
+{% endfor %}
+{% endblock %}
