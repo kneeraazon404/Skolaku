@@ -3,22 +3,27 @@
 <div class="container-fluid testimonial">
 	<div class="row">
 		<div class="col-md-7 mx-auto">
+			
 			<main class="py-3">
-				<h2 class="text-center mb-3">Cerita Sukses Alumni</h2>
+				<h2 class="text-center mb-3">{{item.testmonial_title}}</h2>
 				<div class="owl-carousel owl-carousel-testimonial owl-theme">
+					{% for testimonial in testimonials %}
+
 					<div class="owl-carousel-item rounded mb-3">
 						<div class="position-relative">
 							<a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-						<img src="{% static 'images/testimonial.png' %}" class="rounded">
+						<img src="{{testimonial.image.url}}" class="rounded">
 								<span class="play-button"><i class="bi bi-play-circle-fill fs-1 text-white shadow opacity-75"></i></span>
 							</a>
 						</div>
 						<div class="p-3">
-							<p class="fst-italic"><i class="bi bi-quote"></i>Notice how most of the courses that teach you how to advertise with Facebook.</p>
+							<p class="fst-italic"><i class="bi bi-quote"></i>{{testimonial.description}}</p>
 						</div>
 					</div><!-- owl-carousel-item -->
+					{% endfor %}
 				</div><!-- owl-carousel -->
 			</main>
+			
 		</div>
 	</div><!-- row -->
 </div><!-- container-fluid -->
@@ -34,7 +39,7 @@
       <div class="modal-body">
         <div class="ratio ratio-16x9">
 			
-<iframe width="1904" height="833" src="https://www.youtube.com/embed/ed_UWFr13pU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>		</div>
+      <iframe width="1904" height="833" src="https://www.youtube.com/embed/ed_UWFr13pU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>		</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -2,22 +2,25 @@
 {% load static %}
 
 {% block content %}
+	{% for item in items %}
    <div class="container-fluid home-hero bg-blue">
 	<div class="row">
+	
 		<div class="col-md-7 mx-auto">
 			<main class="py-5 text-white text-center text-md-start mb-5">
 				<div class="d-flex align-items-center flex-column flex-md-row">
 					<div class="left">
-						<h1 class="mb-4">Tingkatkan Skill Anda dengan Kursus Digital Marketing di Skolaku</h1>
-						<p class="lead mb-4">Skolaku dirancang untuk membantu pemilik bisnis, karyawan, dan mahasiswa untuk memiliki keahlian di bidang digital marketing.</p>
-						<a href="#" class="btn btn-lg bg-pink text-white mb-5 p-1"><i class="bi bi-whatsapp"></i> Chat via WhatsApp</a>
+						<h1 class="mb-4">{{item.title}}</h1>
+						<p class="lead mb-4">{{item.excerpt}}</p>
+						<a href="#" class="btn btn-lg bg-pink text-white mb-5 p-2"><i class="bi bi-whatsapp"></i> Chat via WhatsApp</a>
 					</div><!-- left -->
 					<div class="right">
-						<img src="{% static 'images/hero.png' %}">
+						<img src="{{item.hero_img.url}}">
 					</div><!-- right -->
 				</div><!-- d-flex -->
 			</main>
 		</div>
+
 	</div><!-- row -->
 </div><!-- home-hero -->
 
@@ -25,75 +28,27 @@
 	<div class="row">
 		<div class="col-md-7 mx-auto">
 			<main class="py-3 px-3 px-md-5 bg-white rounded shadow text-center">
-				<h2 class="mb-5">Kursus Digital Marketing</h2>
+				<h2 class="mb-5">{{item.home_product_title}}</h2>
 				<div class="row">
+					{% for card in cards %}
 					<div class="col-md-3 col-6 mb-4">
 						<div class="mb-3">
-						<img src="{% static 'images/icon.png' %}">
+						<img src="{{card.card_image.url}}">
 						</div>
-						<h5>Website</h5>
-						<p>Belajar membuat website dan landing page untuk bisnis dengan WordPress.</p>
+						<h5>{{card.card_title}}</h5>
+						<p>{{card.card_desc}}</p>
 					</div><!-- col-md-3 -->
-					<div class="col-md-3 col-6 mb-4">
-						<div class="mb-3">
-						<img src="{% static 'images/icon.png' %}">
-						</div>
-						<h5>Google Ads</h5>
-						<p>Cara mendapatkan calon pembeli dengan beriklan di Google search.</p>
-					</div><!-- col-md-3 -->
-					<div class="col-md-3 col-6 mb-4">
-						<div class="mb-3">
-						<img src="{% static 'images/icon.png' %}">
-						</div>
-						<h5>Display Ads</h5>
-						<p>Belajar membuat iklan banner (GDN, Discovery, dan Performance Max campaign).</p>
-					</div><!-- col-md-3 -->
-					<div class="col-md-3 col-6 mb-4">
-						<div class="mb-3">
-						<img src="{% static 'images/icon.png' %}">
-						</div>
-						<h5>Youtube Ads</h5>
-						<p>Belajar Beriklan di Youtube (Bumper, In-Feed, Skip &amp; Nonskip Ads).</p>
-					</div><!-- col-md-3 -->
-					<div class="col-md-3 col-6 mb-4">
-						<div class="mb-3">
-						<img src="{% static 'images/icon.png' %}">
-						</div>
-						<h5>Facebook Ads</h5>
-						<p>Belajar beriklan di Facebook dan Instagram.</p>
-					</div><!-- col-md-3 -->
-					<div class="col-md-3 col-6 mb-4">
-						<div class="mb-3">
-						<img src="{% static 'images/icon.png' %}">
-						</div>
-						<h5>Google Tag Manager</h5>
-						<p>Cara memasang kode pixel untuk melacak pengunjung yang datang dari iklan</p>
-					</div><!-- col-md-3 -->
-					<div class="col-md-3 col-6 mb-4">
-						<div class="mb-3">
-						<img src="{% static 'images/icon.png' %}">
-						</div>
-						<h5>Google Analytics</h5>
-						<p>Cara mengukur dan menganalisa campaign digital marketing.</p>
-					</div><!-- col-md-3 -->
-					<div class="col-md-3 col-6 mb-4">
-						<div class="mb-3">
-						<img src="{% static 'images/icon.png' %}">
-						</div>
-						<h5>SEO</h5>
-						<p>Cara mengoptimalkan website agar mendapatkan traffic organic dari Google</p>
-					</div><!-- col-md-3 -->
+					{% endfor %}
 				</div><!-- row -->
 			</main>
 		</div>
 	</div><!-- row -->
 </div><!-- home-product -->
 
-
 {% include 'partials/usp.html' %}
 {% include 'partials/testimonial.html' %}
 {% include 'partials/bonus.html' %}
 {% include 'partials/trainer.html' %}
 {% include 'partials/subscribe.html' %}
-
+{% endfor %}
 {% endblock %}

@@ -4,68 +4,25 @@
 	<div class="row">
 		<div class="col-md-7 mx-auto">
 			<main class="py-3">
-				<h2 class="text-center mb-3">Keunggulan Slokaku</h2>
+				<h2 class="text-center mb-3">{{item.usp_title}}</h2>
 				<div class="row">
+					{% for usp in usps %}
 					<div class="col-md-6">
 						<div class="card mb-3 p-3 border-0 shadow-sm">
 						  <div class="row">
 						    <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
-						<img src="{% static 'images/usp1.png' %}">
+						    <img src="{{usp.card_img.url}}">
 						    </div>
 						    <div class="col-md-8">
 						      <div class="card-body p-0 text-center text-md-start">
-						        <h5 class="card-title">Tim Pengajar</h5>
-						        <p class="card-text">Pengajar adalah specialist & berpengalaman lebih dari 10 tahun dibidang digital marketing</p>
+						        <h5 class="card-title">{{usp.card_title}}</h5>
+						        <p class="card-text">{{usp.card_desc}}</p>
 						      </div>
 						    </div>
 						  </div>
 						</div><!-- card -->
 					</div><!-- col-md-6 -->
-					<div class="col-md-6">
-						<div class="card mb-3 p-3 border-0 shadow-sm">
-						  <div class="row">
-						    <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
-						<img src="{% static 'images/usp2.png' %}">
-						    </div>
-						    <div class="col-md-8">
-						      <div class="card-body p-0 text-center text-md-start">
-						        <h5 class="card-title">Support</h5>
-						        <p class="card-text">Setelah lulus, anda akan terus disupport hingga mendapatkan pekerjaan atau membangun bisnis digital marketing</p>
-						      </div>
-						    </div>
-						  </div>
-						</div><!-- card -->
-					</div><!-- col-md-6 -->
-					<div class="col-md-6">
-						<div class="card mb-3 p-3 border-0 shadow-sm">
-						  <div class="row">
-						    <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
-						<img src="{% static 'images/usp3.png' %}">
-						    </div>
-						    <div class="col-md-8">
-						      <div class="card-body p-0 text-center text-md-start">
-						        <h5 class="card-title">Google Partner</h5>
-						        <p class="card-text">Skolaku terdaftar sebagai Google Partner dan sudah banyak membantu bisnis di Indonesia</p>
-						      </div>
-						    </div>
-						  </div>
-						</div><!-- card -->
-					</div><!-- col-md-6 -->
-					<div class="col-md-6">
-						<div class="card mb-3 p-3 border-0 shadow-sm">
-						  <div class="row">
-						    <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
-						<img src="{% static 'images/usp4.png' %}">
-						    </div>
-						    <div class="col-md-8">
-						      <div class="card-body p-0 text-center text-md-start">
-						        <h5 class="card-title">Sertifikat Google</h5>
-						        <p class="card-text">Anda bisa mengikuti ujian dan akan mendapatkan sertifikat dari Google</p>
-						      </div>
-						    </div>
-						  </div>
-						</div><!-- card -->
-					</div><!-- col-md-6 -->
+					{% endfor %}
 				</div><!-- row -->
 			</main>
 		</div><!-- col-md-8 -->

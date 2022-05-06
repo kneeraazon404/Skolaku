@@ -3,20 +3,22 @@
 	<div class="row">
 		<div class="col-md-7 mx-auto">
 			<main class="py-3 pb-md-0 text-white text-center">
+				{% for subscribe in subscriptions %}
+
 				<div class="d-flex align-items-center flex-column flex-md-row">
 					<div class="mb-4 mb-md-0">
-						<img src="{% static 'images/brosur.png' %}">
+						<img src="{{subscribe.image.url}}">
 					</div>
 					<div class="text-center p-md-5">
-						<h2 class="mb-2">Download Brosur</h2>
-						<p class="mb-4">Daftar harga kursus dan silabus bisa anda lihat di dalam brosur ini</p>
+						<h2 class="mb-2">{{subscribe.title}}</h2>
+						<p class="mb-4">{{subscribe.description}}</p>
 						<form class="row g-1">
 							<div class="col">
-								<label for="name" class="visually-hidden">Nama</label>
+								<label for="name" class="visually-hidden">{{subscribe.name}}</label>
 								<input type="text" class="form-control" id="name" placeholder="Nama" required>
 							</div>
 							<div class="col">
-								<label for="email" class="visually-hidden">Email</label>
+								<label for="email" class="visually-hidden">{{subscribe.email}}</label>
 								<input type="email" class="form-control" id="email" placeholder="Email" required>
 							</div>
 							<div class="col">
@@ -25,6 +27,8 @@
 						</form>
 					</div>
 				</div><!-- d-flex -->
+									{% endfor %}
+
 			</main>
 		</div>
 	</div><!-- row -->
