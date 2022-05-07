@@ -18,15 +18,11 @@ class postListView(ListView):
     template_name = "blog/blog.html"  # <app>/<model>_<viewtype>.html
     context_object_name = "posts"
     ordering = ["-date_posted"]
-    paginate_by = 4
-class postDetailView(DetailView):
-    template_name = "blog/blog_detail.html"
-    model = post
-    context_object_name = "blogs"
+    paginate_by = 3
 
 def detail_view(request, pk):
     blog = get_object_or_404(post, pk=pk)
-    forms = post.objects.all()
+    forms = post.objects.all()[:3]
     return render(request, 'blog/blog_detail.html', {'blog': blog, 'forms': forms})
 
 class postCreateView(LoginRequiredMixin, CreateView):
