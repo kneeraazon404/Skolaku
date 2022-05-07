@@ -10,15 +10,7 @@ from django.views.generic import (
 )
 
 from settings.models import General,HomePage,HomePageCards, USP, Testimonials, Bonus, Trainer,Subscription
-# class GeneralView(ListView):
-#     model = General
-#     template_name = "base.html"
-#     context_object_name = "general"
-    
-# class HomepageView(ListView):
-#     model = HomePage
-#     template_name = "home.html"
-#     context_object_name = "items"
+
 def HomePageView(request):
     items=HomePage.objects.all()
     cards=HomePageCards.objects.all()
