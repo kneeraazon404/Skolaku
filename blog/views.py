@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, get_object_or_404
 from django.core.mail import send_mail
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -20,14 +19,25 @@ class postListView(ListView):
     ordering = ["-date_posted"]
     paginate_by = 3
 
-def detail_view(request, pk):
-    blog = get_object_or_404(post, pk=pk)
+
+def detail_view(request, slug):
+    blog = get_object_or_404(post, slug=slug)
     forms = post.objects.all()[:3]
-    return render(request, 'blog/blog_detail.html', {'blog': blog, 'forms': forms})
+    return render(request, "blog/blog_detail.html", {"blog": blog, "forms": forms})
+
 
 class postCreateView(LoginRequiredMixin, CreateView):
     model = post
-    fields = ["title", "content", "category", "excerpt", "image", "video", "date_posted","author"]
+    fields = [
+        "title",
+        "content",
+        "category",
+        "excerpt",
+        "image",
+        "video",
+        "date_posted",
+        "author",
+    ]
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -58,6 +68,7 @@ class postDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
 
 class CourseView(ListView):
     model = Course

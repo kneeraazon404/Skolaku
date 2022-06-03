@@ -17,14 +17,18 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from blog.views import detail_view, postCreateView, postUpdateView, postDeleteView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     path("settings/", include("settings.urls")),
     path("blog/", include("blog.urls")),
     path("", include("core.urls")),
-    path('tinymce/', include('tinymce.urls')),
-
+    path("tinymce/", include("tinymce.urls")),
+    path("new/", postCreateView.as_view(), name="post-create"),
+    path("<slug>/update/", postUpdateView.as_view(), name="post-update"),
+    path("<slug>/delete/", postDeleteView.as_view(), name="post-delete"),
+    path("<slug>/", detail_view, name="post-detail"),
 ]
 
 if settings.DEBUG:
