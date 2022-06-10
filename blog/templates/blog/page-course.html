@@ -1,7 +1,47 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-{% for course in courses %}
+
+{% comment %} {% for course in course %}
+<div class="container-fluid page-course-hero bg-blue">
+	<div class="row">
+		<div class="col-md-7 mx-auto">
+			<main class="py-5 text-white text-center text-md-start mb-5">
+				<div class="d-flex align-items-center flex-column flex-md-row">
+					<div class="left">
+						<h1 class="mb-4">{{ course.title }}</h1>
+						<p class="lead mb-4">{{ course.excerpt }}</p>
+						<a href="https://wa.me/{% if general.whatsapp_no %}{{ general.whatsapp_no }} {% else %}04539458349853{% endif %}" target="_blank" class="btn btn-lg bg-pink text-white mb-5 p-2"><i class="bi bi-whatsapp"></i> Chat via WhatsApp</a>
+					</div><!-- left -->
+					<div class="right">
+						<img src="{{ course.hero_img.url }}">
+					</div><!-- right -->
+				</div><!-- d-flex -->
+			</main>
+		</div>
+	</div><!-- row -->
+</div><!-- page-course-hero -->
+
+<div class="container-fluid page-course-content mb-5">
+	<div class="row">
+		<div class="col-md-7 mx-auto">
+			<main class="py-3 px-3 px-md-5 bg-white rounded shadow">
+				<h2 class="text-center">Kenapa Belajar Google Ads?</h2>
+				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+				<a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" class="text-decoration-none">Read more <i class="bi bi-chevron-down"></i></a>
+				<div class="collapse" id="collapseExample">
+				  <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+				  <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+				  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+				  <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
+				</div><!-- collapse -->
+			</main>
+		</div>
+	</div><!-- row -->
+</div><!-- page-course-content -->
+{% endfor %} {% endcomment %}
+{% for course in course %}
 <div class="container-fluid page-course-hero bg-blue">
 	<div class="row">
 		<div class="col-md-7 mx-auto">
@@ -10,7 +50,7 @@
 					<div class="left">
 						<h1 class="mb-4">{{course.title}}</h1>
 						<p class="lead mb-4">{{course.excerpt}}</p>
-						<a href="#" class="btn btn-lg bg-pink text-white mb-5"><i class="bi bi-whatsapp"></i> Chat via WhatsApp</a>
+						<a href="https://wa.me/{% if general.whatsapp_no %}{{ general.whatsapp_no }} {% else %}04539458349853{% endif %}" target="_blank" class="btn btn-lg bg-pink text-white mb-5 p-2"><i class="bi bi-whatsapp"></i> Chat via WhatsApp</a>
 					</div><!-- left -->
 					<div class="right">
 						<img src="{{course.hero_img.url}}">
@@ -25,6 +65,28 @@
 	<div class="row">
 		<div class="col-md-7 mx-auto">
 			<main class="py-3 px-3 px-md-5 bg-white rounded shadow">
+				<h2 class="text-center">{{ course.title }}</h2>
+				<p>{{ course.intro_content |safe }}</p>
+
+				<a data-bs-toggle="collapse" href="#collapseExample{{ forloop.counter }}" role="button" aria-expanded="false" aria-controls="collapseExample{{ forloop.counter }}" class="text-decoration-none">Read more <i class="bi bi-chevron-down"></i></a>
+				<div class="collapse" id="collapseExample{{ forloop.counter }}">
+				  {{ course.detail_content |safe }}
+				</div><!-- collapse -->
+			</main>
+		</div>
+	</div><!-- row -->
+</div><!-- page-course-content -->
+{% endfor %}
+<div class="d-flex justify-content-between">
+{% comment %} {% if is_paginated %} {% endcomment %}
+<a class="btn btn-outline-primary mb-4 {% if page_obj.has_previous %}{% else %}disabled{% endif %}" href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% else %}#{% endif %}">Previous</a>
+<a class="btn btn-outline-primary mb-4 {% if page_obj.has_next %}{% else %}disabled{% endif %}" href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% else %}#{% endif %}">Next</a>
+</div>
+{% comment %} {% endif %} {% endcomment %}
+{% comment %} <div class="container-fluid page-course-content mb-5">
+	<div class="row">
+		<div class="col-md-7 mx-auto">
+			<main class="py-3 px-3 px-md-5 bg-white rounded shadow">
 
 				<p>{{course.intro_content |safe}}</p>
 				
@@ -36,11 +98,10 @@
 			</main>
 		</div>
 	</div><!-- row -->
-</div><!-- page-course-content -->
+</div><!-- page-course-content --> {% endcomment %}
 {% include 'partials/usp.html' %}
 {% include 'partials/testimonial.html' %}
 {% include 'partials/bonus.html' %}
 {% include 'partials/trainer.html' %}
 {% include 'partials/subscribe.html' %}
-{% endfor %}
 {% endblock %}

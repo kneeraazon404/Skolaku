@@ -3,6 +3,21 @@
 {% load embed_video_tags %}
 {% load static %}
 
+<!-- Open Graph Markup -->
+{% block ogMarkup %}
+<meta property="og:url" content="{{ request.build_absolute_uri }}" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="{{blog.title}}" />
+<meta property="og:description" content="{{blog.excerpt}}" />
+{% if blog.image %}
+<meta property="og:image" content="{{ blog.image.url }}" />
+{% endif %}
+{% endblock ogMarkup %}
+
+{% block metatag %}
+<meta name="description" content="{{blog.excerpt}}" />
+{% endblock metatag %}
+
 {% block title %}
 {{blog.title}}
 {% endblock %}
@@ -20,13 +35,18 @@
 
 				<div class="ratio ratio-16x9 mb-3">
            			{% video blog.video as my %}
-                    <iframe class="embed-responsive-item mb-2 mr-2  mt-2" src="{{ my.url }}"></iframe>
+                    <iframe class="embed-responsive-item mb-2 mr-2  mt-2" src="{{ my.url }}"<iframe width="560" height="315" src="https://www.youtube.com/embed/X0tOpBuYasI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     {% endvideo %}			
 					</div><!-- video youtube -->
 
 				<div class="mb-3">
-					<div class="entry-content mb-3"><iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/47AcSD50nYxgg99swhR8uK?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-						{{blog.content | safe}}
+					<div class="entry-content mb-3">
+                        {% if blog.embed.url %}
+                        <iframe style="border-radius:12px" 
+                        src="{{ blog.embed.url }}" 
+                        width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+						{% endif %}
+                        {{blog.content | safe}}
 					</div>
 					<article>
 					<div class="related-post">
@@ -39,11 +59,13 @@
 					<div class="col-md-4">
 			
 						<div class="card border-0 bg-transparent">
-							<a href="{%url 'post-detail' form.id %}">
+							<a href="{%url 'post-detail' form.slug %}">
+                                {% if form.image %}
 								<img src="{{form.image.url}}" class="card-img-top">
+                                {% endif %}
 							</a>
 							<div class="card-body px-0">
-								<h5 class="card-title"><a href="{%url 'post-detail' form.id %}" class="text-dark text-decoration-none">{{form.title}}</a></h5>
+								<h5 class="card-title"><a href="{%url 'post-detail' form.slug %}" class="text-dark text-decoration-none">{{form.title}}</a></h5>
 								<p>{{form.excerpt}}</p>
 							</div>
 						</div>

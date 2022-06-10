@@ -1,0 +1,14 @@
+.main-sidebar .brand-text{
+    font-weight: 600 !important;
+    font-size:24px;
+}
+.brand-link .brand-image {
+    margin-top: 0px !important;
+}
+#jazzy-actions .form-group,
+#jazzy-actions .object-tools{
+    display: none;
+}
+#jazzy-actions .form-group:first-child{
+    display: unset;
+}
